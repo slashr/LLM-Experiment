@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "huggingface-experiment"
+version = "0.1.0"
+description = "Zero-shot model for Text Classification"
+authors = ["Akash Nair"]
+readme = "README.md"
+packages = [{include = "huggingface_experiment"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
