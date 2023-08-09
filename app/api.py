@@ -1,18 +1,7 @@
-from transformers import pipeline
 from flask import Flask, request, jsonify
+from model import classifier
 
 app = Flask(__name__)
-
-classifier = pipeline(
-    task="zero-shot-classification", device="1", model="facebook/bart-large-mnli"
-)
-
-# S = "I am not able to focus on my work"
-# L = ["News", "Disease", "Attention"]
-
-# predictions = classifier(S, L)
-# pprint.pprint(predictions)
-
 
 @app.route("/classify", methods=["POST"])
 def classify():
