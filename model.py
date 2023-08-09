@@ -1,4 +1,3 @@
-import pprint
 from transformers import pipeline
 from flask import Flask, request, jsonify
 
