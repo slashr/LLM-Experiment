@@ -1,0 +1,6 @@
+# Ignore Python compiled files
+__pycache__/
+*.py[cod]
+
+# Ignore large file model.safetensors
+model/model.safetensors
