@@ -20,7 +20,7 @@ if __name__ == "__main__":
         #function_return=["dataset_spec"],
         cache_executed_step=False,
         docker="dawker/bart-large-mnli:latest",
-        docker_bash_setup_script="./run.sh"
+        docker_bash_setup_script="./run.sh",
         repo="https://github.com/slashr/LLM-Experiment",
         repo_branch="clearml",
     )
