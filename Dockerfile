@@ -2,8 +2,13 @@ FROM python:3.11-slim as base
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    curl && \
-    apt-get autoremove -y && apt-get clean
+    curl \
+    gcc \
+    python3-dev && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 
 RUN mkdir /model
 
