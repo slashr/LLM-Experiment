@@ -1,3 +1,4 @@
 torch>=2.0,<3.0
 transformers>=4.31.0,<5.0
 flask>=2.3,<3.0
+clearml<=1.13.2

@@ -1,5 +1,7 @@
 from clearml import PipelineController
 from clearml import Task  # type: ignore
+import os
+import subprocess
 
 #if __name__ == "__main__":
 #
@@ -38,6 +40,22 @@ from clearml import Task  # type: ignore
 #    print("pipeline completed")
 #
 
+def execute_in_docker():
+    # This code will run in the Docker container
+    print("Current Working Directory:", os.getcwd())
+    os.chdir("/")
+    print("Changed Working Directory:", os.getcwd())
+    print("Files:", os.listdir(os.getcwd()))
+
+    uname_result = subprocess.run(['uname', '-a'], stdout=subprocess.PIPE, text=True)
+    print("UNAME", uname_result.stdout)
+
+    whoami_result = subprocess.run(['whoami'], stdout=subprocess.PIPE, text=True)
+    print("WHOAMI", whoami_result.stdout)
+
+    df_result = subprocess.run(['df', '-h'], stdout=subprocess.PIPE, text=True)
+    print("DF", df_result.stdout)
+
 def execute_remotely(project_name="akash_project", task_name="akash_task"):
     # TODO - add type, tags
     task = Task.init(project_name=project_name, task_name=task_name)
@@ -45,10 +63,24 @@ def execute_remotely(project_name="akash_project", task_name="akash_task"):
         docker_image="dawker/bart-large-mnli:latest"
     )
     # task.execute_remotely(queue_name="k8s_scheduler")
-    task.execute_remotely(queue_name="jobs_gpu_p100")
+    task.execute_remotely(queue_name="default")
+    execute_in_docker()
+
 
 
 if __name__ == "__main__":
     # Comment out to run locally
     execute_remotely(project_name="akash_project", task_name="akash_test")
-    import api
+#    current_directory = os.getcwd()
+#    print("Current Working Directory:", current_directory)
+#    os.chdir("/") 
+#    current_directory = os.getcwd()
+#    print("Changed Working Directory:", current_directory)
+#    print("Files:", os.listdir(current_directory))
+#    uname_result = subprocess.run(['uname', '-a'], stdout=subprocess.PIPE, text=True)
+#    print("UNAME", uname_result) 
+#    whoami_result = subprocess.run(['whoami'], stdout=subprocess.PIPE, text=True)
+#    print("WHOAMI", whoami_result)
+#    df_result = subprocess.run(['df', '-h'], stdout=subprocess.PIPE, text=True)
+#    print("DF", df_result)
+#
